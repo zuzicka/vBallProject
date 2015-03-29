@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AssistantTest < ActiveSupport::TestCase
+class CoachingTableTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

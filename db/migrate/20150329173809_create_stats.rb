@@ -1,4 +1,4 @@
-class CreateStat < ActiveRecord::Migration
+class CreateStats < ActiveRecord::Migration
   def change
     create_table :stats do |t|
       t.string :name

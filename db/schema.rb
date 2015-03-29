@@ -11,15 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329160511) do
+ActiveRecord::Schema.define(version: 20150329173843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assistants", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-  end
 
   create_table "clubs", force: :cascade do |t|
     t.string   "name"
@@ -29,69 +24,39 @@ ActiveRecord::Schema.define(version: 20150329160511) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "coach_tables", force: :cascade do |t|
+  create_table "coaching_tables", force: :cascade do |t|
     t.string   "name"
     t.string   "path"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "team_id"
   end
 
-  create_table "coaches", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
+  create_table "leaders", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "coaches_teams", id: false, force: :cascade do |t|
-    t.integer "coach_id", null: false
-    t.integer "team_id",  null: false
-  end
-
-  create_table "players", force: :cascade do |t|
-    t.string  "name"
-    t.integer "number"
-    t.integer "team_id"
-  end
-
-  create_table "players_positions", id: false, force: :cascade do |t|
-    t.integer "position_id", null: false
-    t.integer "player_id",   null: false
-  end
-
-  create_table "players_sets", id: false, force: :cascade do |t|
-    t.integer "set_id",           null: false
-    t.integer "player_id",        null: false
-    t.integer "servingEso"
-    t.integer "servingOK"
-    t.integer "servingError"
-    t.integer "hittingKill"
-    t.integer "hittingOK"
-    t.integer "hittingError"
-    t.integer "passingKill"
-    t.integer "passingOK"
-    t.integer "passingError"
-    t.integer "blockingKill"
-    t.integer "blockingOK"
-    t.integer "blockingError"
-    t.integer "settingExcellent"
-    t.integer "settingOK"
-    t.integer "settingError"
-    t.integer "defenseExcellent"
-    t.integer "defenseOK"
-    t.integer "defenseError"
-  end
-
-  create_table "positions", force: :cascade do |t|
-    t.string  "type"
-    t.integer "player_id"
-  end
-
-  create_table "sets", force: :cascade do |t|
+  create_table "matches", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "stat_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "stats", force: :cascade do |t|
@@ -99,12 +64,12 @@ ActiveRecord::Schema.define(version: 20150329160511) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "team_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string  "name"
-    t.integer "club_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

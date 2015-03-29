@@ -1,4 +1,4 @@
-class CreateClub < ActiveRecord::Migration
+class CreateClubs < ActiveRecord::Migration
   def change
     create_table :clubs do |t|
       t.string :name
@@ -7,7 +7,5 @@ class CreateClub < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-
   end
-
 end
