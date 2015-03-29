@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328171605) do
+ActiveRecord::Schema.define(version: 20150329160511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150328171605) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "team_id"
   end
 
   create_table "coaches", force: :cascade do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150328171605) do
   create_table "players", force: :cascade do |t|
     t.string  "name"
     t.integer "number"
+    t.integer "team_id"
   end
 
   create_table "players_positions", id: false, force: :cascade do |t|
@@ -81,13 +83,15 @@ ActiveRecord::Schema.define(version: 20150328171605) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string "type"
+    t.string  "type"
+    t.integer "player_id"
   end
 
   create_table "sets", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "stat_id"
   end
 
   create_table "stats", force: :cascade do |t|
@@ -95,10 +99,12 @@ ActiveRecord::Schema.define(version: 20150328171605) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "team_id"
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "club_id"
   end
 
 end
