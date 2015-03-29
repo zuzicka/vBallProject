@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329173843) do
+ActiveRecord::Schema.define(version: 20150329180107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,10 +40,38 @@ ActiveRecord::Schema.define(version: 20150329173843) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "leaders_teams", id: false, force: :cascade do |t|
+    t.integer "leader_id", null: false
+    t.integer "team_id",   null: false
+  end
+
   create_table "matches", force: :cascade do |t|
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "matches_players", id: false, force: :cascade do |t|
+    t.integer "match_id",         null: false
+    t.integer "player_id",        null: false
+    t.integer "servingEso"
+    t.integer "servingOK"
+    t.integer "servingError"
+    t.integer "hittingKill"
+    t.integer "hittingOK"
+    t.integer "hittingError"
+    t.integer "passingKill"
+    t.integer "passingOK"
+    t.integer "passingError"
+    t.integer "blockingKill"
+    t.integer "blockingOK"
+    t.integer "blockingError"
+    t.integer "settingExcellent"
+    t.integer "settingOK"
+    t.integer "settingError"
+    t.integer "defenseExcellent"
+    t.integer "defenseOK"
+    t.integer "defenseError"
   end
 
   create_table "players", force: :cascade do |t|
@@ -51,6 +79,11 @@ ActiveRecord::Schema.define(version: 20150329173843) do
     t.integer  "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "players_positions", id: false, force: :cascade do |t|
+    t.integer "position_id", null: false
+    t.integer "player_id",   null: false
   end
 
   create_table "positions", force: :cascade do |t|
